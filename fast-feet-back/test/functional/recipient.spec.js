@@ -5,12 +5,10 @@ const { test, trait } = use('Test/Suite')('Recipient')
 trait('Test/ApiClient')
 trait('Auth/Client')
 
-const Factory = use('Factory')
+const User = use('App/Models/User')
 
 test('Cadastrar novo recipient', async ({ client, assert }) => {
-  const user = await Factory
-    .model('App/Models/User')
-    .create()
+  const user = await User.findOrFail(1)
 
   const response = await client
     .post('/recipients')

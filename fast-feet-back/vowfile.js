@@ -35,6 +35,7 @@ module.exports = (cli, runner) => {
     |
     */
     await ace.call('migration:run', {}, { silent: true })
+    await ace.call('seed', {}, { silent: true })
   })
 
   runner.after(async () => {
@@ -46,7 +47,9 @@ module.exports = (cli, runner) => {
     | Shutdown the HTTP server when all tests have been executed.
     |
     */
-    use('Adonis/Src/Server').getInstance().close()
+    use('Adonis/Src/Server')
+      .getInstance()
+      .close()
 
     /*
     |--------------------------------------------------------------------------

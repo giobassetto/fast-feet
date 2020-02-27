@@ -7,13 +7,12 @@ trait('Auth/Client')
 
 const Factory = use('Factory')
 const Helpers = use('Helpers')
+const User = use('App/Models/User')
 
 test('Criar entregador', async ({ client, assert }) => {
   const { id } = await client.post('/uploads').attach('file', Helpers.resourcesPath('test_image.png')).end()
 
-  const user = await Factory
-    .model('App/Models/User')
-    .create()
+  const user = await User.findOrFail(1)
 
   const response = await client.post('/deliverymans').loginVia(user).send({
     name: 'José dos Santos',
@@ -26,9 +25,7 @@ test('Criar entregador', async ({ client, assert }) => {
 })
 
 test('Atualizar entregador', async ({ client, assert }) => {
-  const user = await Factory
-    .model('App/Models/User')
-    .create()
+  const user = await User.findOrFail(1)
 
   const deliveryman = await Factory
     .model('App/Models/Deliveryman')
@@ -46,9 +43,7 @@ test('Atualizar entregador', async ({ client, assert }) => {
 })
 
 test('Remover entregador', async ({ client }) => {
-  const user = await Factory
-    .model('App/Models/User')
-    .create()
+  const user = await User.findOrFail(1)
 
   const deliveryman = await Factory
     .model('App/Models/Deliveryman')
@@ -60,9 +55,7 @@ test('Remover entregador', async ({ client }) => {
 })
 
 test('Listar todos entregadores', async ({ client, assert }) => {
-  const user = await Factory
-    .model('App/Models/User')
-    .create()
+  const user = await User.findOrFail(1)
 
   await Factory
     .model('App/Models/Deliveryman')
@@ -75,9 +68,7 @@ test('Listar todos entregadores', async ({ client, assert }) => {
 })
 
 test('Listar entregador por id', async ({ client, assert }) => {
-  const user = await Factory
-    .model('App/Models/User')
-    .create()
+  const user = await User.findOrFail(1)
 
   const deliveryman = await Factory
     .model('App/Models/Deliveryman')

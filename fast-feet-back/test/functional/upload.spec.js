@@ -6,10 +6,10 @@ trait('Test/ApiClient')
 trait('Auth/Client')
 
 const Helpers = use('Helpers')
-const Factory = use('Factory')
+const User = use('App/Models/User')
 
 test('Upload de imagem', async ({ client, assert }) => {
-  const user = await Factory.model('App/Models/User').create()
+  const user = await User.findOrFail(1)
   const response = await client.post('/uploads').loginVia(user).attach('file', Helpers.resourcesPath('test_image.png')).end()
 
   response.assertStatus(200)

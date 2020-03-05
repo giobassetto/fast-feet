@@ -35,7 +35,7 @@ class DeliverymanController {
     const data = request.only(['name', 'avatar_id', 'email'])
     const rules = {
       name: 'required',
-      email: 'required'
+      email: 'required|email|unique:deliverymans,email'
     }
 
     const validation = await validateAll(data, rules)

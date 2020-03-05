@@ -12,4 +12,5 @@ Route.group(() => {
   Route.post('/uploads', 'FileController.store')
   Route.resource('/recipients', 'RecipientController').apiOnly()
   Route.resource('/deliverymans', 'DeliverymanController').apiOnly()
+  Route.resource('/orders', 'OrderController').apiOnly()
 }).middleware('auth')

@@ -13,6 +13,7 @@ class OrdersSchema extends Schema {
         .inTable('recipients')
         .onUpdate('CASCADE')
         .onDelete('SET NULL')
+        .notNullable()
       table.integer('deliveryman_id')
         .unsigned()
         .references('id')

@@ -12,12 +12,12 @@ const User = use('App/Models/User')
 test('Criar entregador', async ({ client, assert }) => {
   const { id } = await client.post('/uploads').attach('file', Helpers.resourcesPath('test_image.png')).end()
 
-  const user = await User.findOrFail(1)
+  const user = await User.find(1)
 
   const response = await client.post('/deliverymans').loginVia(user).send({
-    name: 'José dos Santos',
+    name: 'Um nome qualquer',
     avatar_id: id,
-    email: 'jose@dossantos.com'
+    email: 'joaodasneves@gmail.com'
   }).end()
 
   response.assertStatus(200)
@@ -25,7 +25,7 @@ test('Criar entregador', async ({ client, assert }) => {
 })
 
 test('Atualizar entregador', async ({ client, assert }) => {
-  const user = await User.findOrFail(1)
+  const user = await User.find(1)
 
   const deliveryman = await Factory
     .model('App/Models/Deliveryman')
@@ -43,7 +43,7 @@ test('Atualizar entregador', async ({ client, assert }) => {
 })
 
 test('Remover entregador', async ({ client }) => {
-  const user = await User.findOrFail(1)
+  const user = await User.find(1)
 
   const deliveryman = await Factory
     .model('App/Models/Deliveryman')

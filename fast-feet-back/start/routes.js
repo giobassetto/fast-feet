@@ -13,4 +13,5 @@ Route.group(() => {
   Route.resource('/recipients', 'RecipientController').apiOnly()
   Route.resource('/deliverymans', 'DeliverymanController').apiOnly()
   Route.resource('/orders', 'OrderController').apiOnly()
+  Route.get('/deliverymans/:id/deliveries', 'DeliverymanDeliveryController.index')
 }).middleware('auth')
